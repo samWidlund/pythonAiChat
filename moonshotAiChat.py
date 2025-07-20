@@ -29,6 +29,10 @@ while runScript == True:
         input_question = input("please enter your question: ") 
         print("input_question: " + input_question)
 
+        # write question into txt file
+        with open("chat_info.txt", "a") as f:
+            f.write(input_question + "\n") # append question to file with line break
+
         # filter api input
         response = query({
             "messages": [
