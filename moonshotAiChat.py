@@ -1,11 +1,11 @@
 import os
 import requests
 import json
+from dotenv import load_dotenv
 
 runScript = True
 
 # load api key
-from dotenv import load_dotenv
 load_dotenv()
 API_TOKEN = os.environ.get("HF_TOKEN")
 if not API_TOKEN:
