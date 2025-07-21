@@ -20,11 +20,14 @@ def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 
+# initial username input
+username = input("please enter your username: ")
+infoFile = username + ".txt"
+
 # run program loop
 while runScript == True:
 
     # initial inputs
-    username = input("please enter your username: ")
     start_string = input("do you want to enter a question? y/n: ")
 
     if start_string == "y":
@@ -35,8 +38,11 @@ while runScript == True:
         print("input_question: " + input_question)
 
         # save question in username based txt file
-        if not os.path.exists(username + ".txt"):
-            with open(username + ".txt", "a") as f:
+        if not os.path.exists(infoFile):
+            with open(infoFile, "a") as f:
+                f.write(input_question + "\n") # append question to file with line break
+        elif os.path.exists(infoFile):
+            with open(infoFile, "a") as f:
                 f.write(input_question + "\n") # append question to file with line break
 
         # filter api input
