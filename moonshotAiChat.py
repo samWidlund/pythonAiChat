@@ -37,13 +37,10 @@ while runScript == True:
         input_question = input("please enter your question: ") 
         print("input_question: " + input_question)
 
-        # save question in username based txt file
-        if not os.path.exists(infoFile):
-            with open(infoFile, "a") as f:
-                f.write(input_question + "\n") # append question to file with line break
-        elif os.path.exists(infoFile):
-            with open(infoFile, "a") as f:
-                f.write(input_question + "\n") # append question to file with line break
+        # save question in username based txt file, create if not already exist
+        with open(infoFile, "a") as f:
+            f.write(input_question + "\n") # append question to file with line break
+
 
         # filter api input
         response = query({
