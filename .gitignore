@@ -1,3 +1,11 @@
+# enviroment variables
 .env
+
+# virtual environment
 .venv
+
+# python cache
 .vscode
+
+# local saved chatinfo
+*.txt
