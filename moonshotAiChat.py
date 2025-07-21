@@ -22,16 +22,22 @@ def query(payload):
 
 # run program loop
 while runScript == True:
+
+    # initial inputs
+    username = input("please enter your username: ")
     start_string = input("do you want to enter a question? y/n: ")
+
     if start_string == "y":
 
         # inputs
+        print("username: " + username)
         input_question = input("please enter your question: ") 
         print("input_question: " + input_question)
 
-        # write question into txt file
-        with open("chat_info.txt", "a") as f:
-            f.write(input_question + "\n") # append question to file with line break
+        # save question in username based txt file
+        if not os.path.exists(username + ".txt"):
+            with open(username + ".txt", "a") as f:
+                f.write(input_question + "\n") # append question to file with line break
 
         # filter api input
         response = query({
@@ -53,5 +59,19 @@ while runScript == True:
 
     elif start_string == "n":
         print("until next time!")
+
+        # does not work !!
+        remove_file = input("do you want to remove the saved chat info? y/n: ")
+        if remove_file == "y":
+            if os.path.exists(username + ".txt"):
+                os.remove(username + ".txt")
+                print("removed saved chat info.")
+            else:
+                print("no saved chat info found.")
+        elif remove_file == "n":
+            print("saved chat info will not be removed.")
+        else:
+            print("invalid input, saved chat info will not be removed.")
+
         runScript = False 
         break
